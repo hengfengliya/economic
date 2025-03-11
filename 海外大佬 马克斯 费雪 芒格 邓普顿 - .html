@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投资智慧录：海外投资大师经典思想集锦</title>
+    <meta name="description" content="汇集霍华德·马克斯、查理·芒格、菲利普·费雪等投资大师的经典投资思想与智慧">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f7ff',
+                            100: '#e0eefe',
+                            200: '#bbd8fd',
+                            300: '#83b9fc',
+                            400: '#4593f8',
+                            500: '#1a71f1',
+                            600: '#0c57e6',
+                            700: '#0b47ce',
+                            800: '#0f3aa7',
+                            900: '#123485',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter var', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        };
+
+        // 检查系统偏好并设置初始主题
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        // 主题切换函数
+        function setTheme(theme) {
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            } else {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            }
+        }
+
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                setTheme('light');
+            } else {
+                setTheme('dark');
+            }
+        }
+
+        // 文档加载完毕后执行
+        document.addEventListener('DOMContentLoaded', function() {
+            // 图片加载失败处理
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.onerror = function() {
+                    this.onerror = null;
+                    this.src = 'https://placehold.co/600x400/123485/ffffff?text=图片暂不可用';
+                };
+            });
+
+            // 移动端菜单切换
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // 滚动监听，添加淡入动画
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+
+            // 返回顶部按钮
+            const backToTopBtn = document.getElementById('backToTop');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopBtn.classList.remove('opacity-0', 'pointer-events-none');
+                    backToTopBtn.classList.add('opacity-100');
+                } else {
+                    backToTopBtn.classList.remove('opacity-100');
+                    backToTopBtn.classList.add('opacity-0', 'pointer-events-none');
+                }
+            });
+            
+            // 动态获取当前年份
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        });
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* 文章内容样式 */
+        .content p {
+            margin-bottom: 1.5rem;
+            line-height: 1.75;
+        }
+
+        /* 引用样式 */
+        blockquote {
+            border-left: 4px solid #1a71f1;
+            padding-left: 1rem;
+            font-style: italic;
+            margin: 1.5rem 0;
+        }
+
+        /* 渐入动画 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; }
+
+        /* 卡片悬停效果 */
+        .insight-card {
+            transition: all 0.3s ease;
+        }
+
+        .insight-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .dark .insight-card:hover {
+            box-shadow: 0 10px 25px -5px rgba(255, 255, 255, 0.05), 0 10px 10px -5px rgba(255, 255, 255, 0.02);
+        }
+
+        /* 标题装饰 */
+        .title-decoration {
+            position: relative;
+            display: inline-block;
+        }
+
+        .title-decoration::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, #1a71f1, #4593f8);
+            border-radius: 2px;
+        }
+
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .dark ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+        }
+
+        .dark ::-webkit-scrollbar-thumb {
+            background: #555;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #888;
+        }
+
+        .dark ::-webkit-scrollbar-thumb:hover {
+            background: #777;
+        }
+
+        /* 亮点标记 */
+        .highlight {
+            background: linear-gradient(180deg, rgba(255,255,255,0) 60%, rgba(26,113,241,0.2) 40%);
+            padding: 0 2px;
+        }
+
+        .dark .highlight {
+            background: linear-gradient(180deg, rgba(255,255,255,0) 60%, rgba(69,147,248,0.2) 40%);
+        }
+
+        /* 图片加载占位符 */
+        img {
+            background: linear-gradient(110deg, #ececec 8%, #f5f5f5 18%, #ececec 33%);
+            background-size: 200% 100%;
+            animation: 1.5s shine linear infinite;
+        }
+
+        .dark img {
+            background: linear-gradient(110deg, #2a2a2a 8%, #3a3a3a 18%, #2a2a2a 33%);
+            background-size: 200% 100%;
+            animation: 1.5s shine linear infinite;
+        }
+
+        @keyframes shine {
+            to {
+                background-position-x: -200%;
+            }
+        }
+
+        /* 返回顶部按钮 */
+        .back-to-top {
+            transition: all 0.3s ease;
+        }
+
+        /* 渐变文本 */
+        .gradient-text {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(90deg, #1a71f1, #4593f8);
+        }
+
+        .dark .gradient-text {
+            background-image: linear-gradient(90deg, #4593f8, #83b9fc);
+        }
+
+        /* 引用框装饰 */
+        .quote-decoration {
+            position: relative;
+        }
+
+        .quote-decoration::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: -10px;
+            font-size: 4rem;
+            font-family: Georgia, serif;
+            color: rgba(26, 113, 241, 0.1);
+            line-height: 1;
+        }
+
+        .dark .quote-decoration::before {
+            color: rgba(69, 147, 248, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300 font-sans">
+    <!-- 导航栏 -->
+    <header class="sticky top-0 z-50 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm shadow-sm border-b border-gray-100 dark:border-gray-700 transition-colors duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <nav class="flex justify-between items-center h-16">
+                <div class="flex items-center space-x-4">
+                    <span class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-primary-400 dark:from-primary-500 dark:to-primary-300">
+                        强哥财经·投资智慧录
+                    </span>
+                    <span class="hidden md:inline-block text-sm text-gray-500 dark:text-gray-400">海外投资大师经典思想集锦</span>
+                </div>
+                
+                <div class="flex items-center space-x-6">
+                    <div class="hidden md:flex items-center space-x-6">
+                        <a href="#value-investing" class="text-sm font-medium text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 transition-colors">价值投资</a>
+                        <a href="#growth-investing" class="text-sm font-medium text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 transition-colors">成长投资</a>
+                        <a href="#investment-philosophy" class="text-sm font-medium text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 transition-colors">投资哲学</a>
+                        <a href="#investment-practice" class="text-sm font-medium text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 transition-colors">实战思考</a>
+                    </div>
+                    
+                    <button onclick="toggleTheme()" class="p-2 rounded-full text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none transition-colors duration-200 ml-2">
+                        <svg class="w-5 h-5 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                        <svg class="w-5 h-5 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                    
+                    <!-- 移动端菜单按钮 -->
+                    <div class="md:hidden">
+                        <button id="mobile-menu-button" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 focus:outline-none">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+            
+            <!-- 移动端菜单 -->
+            <div id="mobile-menu" class="hidden md:hidden py-2 space-y-2">
+                <a href="#value-investing" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 transition-colors">价值投资</a>
+                <a href="#growth-investing" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 transition-colors">成长投资</a>
+                <a href="#investment-philosophy" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 transition-colors">投资哲学</a>
+                <a href="#investment-practice" class="block px-4 py-2 text-sm font-medium text-gray-700 hover:text-primary-600 dark:text-gray-300 dark:hover:text-primary-400 transition-colors">实战思考</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区 -->
+    <section class="relative bg-gradient-to-br from-primary-600 to-primary-800 dark:from-primary-800 dark:to-primary-900 py-24 sm:py-32 overflow-hidden">
+        <div class="absolute inset-0 bg-grid-white/[0.05] bg-[length:20px_20px]"></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight fade-in">
+                    海外投资大师<br />经典思想集锦
+                </h1>
+                <p class="text-xl text-primary-100 mb-10 max-w-2xl mx-auto fade-in delay-100">
+                    汇集霍华德·马克斯、查理·芒格、菲利普·费雪等投资大师的真知灼见，启迪您的投资智慧
+                </p>
+                <div class="flex flex-wrap justify-center gap-4 fade-in delay-200">
+                    <a href="#masters" class="px-6 py-3 bg-white text-primary-700 hover:bg-primary-50 font-medium rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                        探索大师智慧
+                    </a>
+                    <a href="#content-overview" class="px-6 py-3 bg-transparent border border-white text-white hover:bg-white/10 font-medium rounded-lg transition-all duration-300 transform hover:scale-105">
+                        内容概览
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 投资大师介绍 -->
+    <section id="masters" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-16 fade-in">
+                <span class="title-decoration">投资大师介绍</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 霍华德·马克斯 -->
+                <div class="insight-card bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-600 fade-in">
+                    <img src="https://source.unsplash.com/random/300x200/?finance" alt="霍华德·马克斯" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+                    <h3 class="text-xl font-semibold mb-2">霍华11德·马克斯</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">橡树资本创始人，价值投资大师，以深刻的市场周期理解和风险控制理念闻名。</p>
+                    <div class="flex items-center text-gray-500 dark:text-gray-400 text-sm">
+                        <span class="mr-2">代表作：</span>
+                        <span class="font-medium">《投资最重要的事》</span>
+                    </div>
+                </div>
+                
+                <!-- 查理·芒格 -->
+                <div class="insight-card bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-600 fade-in delay-100">
+                    <img src="https://source.unsplash.com/random/301x200/?business" alt="查理·芒格" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+                    <h3 class="text-xl font-semibold mb-2">查理·芒格</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">伯克希尔·哈撒韦副主席，以多元思维模型和长期投资理念著称。</p>
+                    <div class="flex items-center text-gray-500 dark:text-gray-400 text-sm">
+                        <span class="mr-2">代表作：</span>
+                        <span class="font-medium">《穷查理宝典》</span>
+                    </div>
+                </div>
+                
+                <!-- 菲利普·费雪 -->
+                <div class="insight-card bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-600 fade-in delay-200">
+                    <img src="https://source.unsplash.com/random/302x200/?stocks" alt="菲利普·费雪" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+                    <h3 class="text-xl font-semibold mb-2">菲利普·费雪</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">成长股投资先驱，强调长期持有优质成长型企业，影响了巴菲特的投资理念。</p>
+                    <div class="flex items-center text-gray-500 dark:text-gray-400 text-sm">
+                        <span class="mr-2">代表作：</span>
+                        <span class="font-medium">《怎样选择成长股》</span>
+                    </div>
+                </div>
+                
+                <!-- 约翰·邓普顿 -->
+                <div class="insight-card bg-gray-50 dark:bg-gray-700 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-600 fade-in delay-300">
+                    <img src="https://source.unsplash.com/random/303x200/?investing" alt="约翰·邓普顿" class="w-full h-40 object-cover rounded-lg mb-4" loading="lazy">
+                    <h3 class="text-xl font-semibold mb-2">约翰·邓普顿</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">全球投资先驱，价值投资和分散投资策略的倡导者，以逆向投资哲学著称。</p>
+                    <div class="flex items-center text-gray-500 dark:text-gray-400 text-sm">
+                        <span class="mr-2">代表作：</span>
+                        <span class="font-medium">《全球投资的格局》</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 内容概览 -->
+    <section id="content-overview" class="py-20 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-16 fade-in">
+                <span class="title-decoration">内容概览</span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 价值投资 -->
+                <div class="insight-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 fade-in">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-100 dark:bg-primary-900/50 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-balance-scale text-primary-600 dark:text-primary-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold">价值投资</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        探讨价值投资理念的演变，以及在当代市场环境中价值投资的适应与挑战。从格雷厄姆的"捡烟蒂"投资到对内在价值的现代诠释。
+                    </p>
+                    <a href="#value-investing" class="inline-flex items-center text-primary-600 dark:text-primary-400 hover:underline">
+                        了解更多 <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+                
+                <!-- 成长投资 -->
+                <div class="insight-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 fade-in delay-100">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-100 dark:bg-primary-900/50 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-chart-line text-primary-600 dark:text-primary-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold">成长投资</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        了解如何识别并投资于具有长期增长潜力的公司，以及如何平衡乐观与谨慎，在高估值环境中寻找真正的成长机会。
+                    </p>
+                    <a href="#growth-investing" class="inline-flex items-center text-primary-600 dark:text-primary-400 hover:underline">
+                        了解更多 <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+                
+                <!-- 投资哲学 -->
+                <div class="insight-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 fade-in delay-200">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-100 dark:bg-primary-900/50 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-brain text-primary-600 dark:text-primary-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-semibold">投资哲学</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        深入探讨投资大师们的思维方式、决策框架，以及他们如何看待市场、风险与机遇，如何保持独立思考并抵抗市场情绪的影响。
+                    </p>
+                    <a href="#investment-philosophy" class="inline-flex items-center text-primary-600 dark:text-primary-400 hover:underline">
+                        了解更多 <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+                
+                <!-- 实战思考 -->
+                <div class="insight-card bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-100 dark:border-gray-700 fade-in delay-300">
+                    <div class="flex items-center mb-4">
+                        <div class="bg-primary-100 dark:bg-primary-900/50 w-12 h-12 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                            <i class="fas fa-lightbulb text-primary-600 dark:text-primary-400 text-xl"></i>
+                        </div>
+
+                        <h3 class="text-2xl font-semibold">实战思考</h3>
+                    </div>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">
+                        投资大师们关于市场时机、组合管理、风险控制的实战经验与心得，帮助投资者在变幻莫测的市场中保持冷静与理性。
+                    </p>
+                    <a href="#investment-practice" class="inline-flex items-center text-primary-600 dark:text-primary-400 hover:underline">
+                        了解更多 <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 主要内容区域 -->
+    <!-- 价值投资 -->
+    <section id="value-investing" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-12 fade-in">
+                    <span class="title-decoration">价值投资：本质与演变</span>
+                </h2>
+                
+                <div class="prose prose-lg max-w-none dark:prose-invert content fade-in">
+                    <p>价值投资是主流的投资流派之一，它关注一家公司可量化的内在价值，这通常是以现金流的生成能力为参考，并在标的价格相对其内在价值有折扣时选择买入。</p>
+                    
+                    <blockquote class="quote-decoration">
+                        价值投资者明白，市场很少会以证券对应的资产价值定价，而是与经常与公司内在价值脱节。也正因如此，我们才有机会以低估的价格买入股票或债券。这需要投资者做到独立思考，并抵制市场周期导致的情绪波动，仅根据价值做出投资决策。
+                    </blockquote>
+
+                    <p>价值投资可能会在不同的时段跑赢市场，也可能会跑输市场，这是因为投资者的情绪在不停变化。不过我们相信，<span class="highlight">价值投资哲学永远不会过时</span>。当投资者们对某个价值被低估的领域的厌恶程度达到顶点之时，就是价值投资者买进的好机会。</p>
+                    
+                    <div class="my-10 bg-gray-50 dark:bg-gray-700 rounded-xl p-6">
+                        <h3 class="text-xl font-semibold mb-4">格雷厄姆的"捡烟蒂"投资</h3>
+                        <p class="mb-4">"价值"的标签化有赖于它的早期推广者格雷厄姆实行的低估值策略。格雷厄姆的投资风格被他的门生巴菲特称为"捡烟蒂式"投资。</p>
+                        <p>格雷厄姆的投资方法尤其关注那些相对资产负债表中净资产价值来说被低估的平凡公司，巴菲特将这比作在大街上寻找还剩一口没抽的烟蒂。</p>
+                        <p class="mt-4">格雷厄姆藉此取得了令人艳羡的投资业绩，不过有意思的是，<span class="highlight">他日后坦言，他在一家成长型公司GEICO（美国第四大汽车保险公司）的长期投资中获得的收益比他所有其他投资的总和还多</span>。</p>
+                    </div>
+
+                    <h3>价值陷阱</h3>
+                    <p>仅仅追求指标低估值可能会导致投资者踏入所谓的"价值陷阱"：一些股票看上去价格便宜，但事实并非如此，因为这些公司存在经营缺陷，或者它们目前的业绩水平无法持续。</p>
+                    
+                    <p>随着时间的流逝，价值投资者之间也出现了分化，一部分价值投资者采取了更严格的方法，特别强调低估值。由于格雷厄姆和巴菲特的"烟蒂式投资"非常关注低估值，这导致了一些价值投资者将低估值作为最核心的考虑因素。</p>
+                    
+                    <h3>现代价值投资</h3>
+                    <p>价值投资不一定与低估值指标有关。价值有多种形式，一个公司发展迅速，依靠技术等无形资产取得成功和/或较高的市盈率这一事实，并不意味着就不能基于内在价值进行投资。</p>
+                    
+                    <blockquote class="quote-decoration">
+                        许多潜在价值的来源不能被简化成一个数字。正如爱因斯坦所说: "不是所有有价值的东西都可以被计算，也不是所有可以计算的东西都有价值。"无法精确预测的事情并不意味着它不真实。
+                    </blockquote>
+
+                    <div class="my-10 bg-primary-50 dark:bg-primary-900/20 rounded-xl p-6 border border-primary-100 dark:border-primary-800">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-primary-100 dark:bg-primary-900 w-10 h-10 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-lightbulb text-primary-600 dark:text-primary-400"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold">马克斯给儿子的建议</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            "安德鲁（马克斯的儿子）你不能因为一只股票的市盈率相对于市场的历史平均市盈率高，就说它被高估了。重要的是思考该公司在很长一段时间内能产生多少现金流，以合理的折现率进行折现，并将所得现值与当前价格进行比较。有很多关于公司目前的状况和未来的潜力的东西，都不会被市盈率所反映，所以高指标不应该把你吓跑。"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 成长投资 -->
+    <section id="growth-investing" class="py-20 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-12 fade-in">
+                    <span class="title-decoration">成长投资：长期复利的力量</span>
+                </h2>
+                
+                <div class="prose prose-lg max-w-none dark:prose-invert content fade-in">
+                    <p>成长投资通常需要投资者相信未经验证的商业模式，新的商业模式可能会不时遭受挫折，这需要投资者抱有深刻的信念，否则无法坚持下去。</p>
+                    
+                    <blockquote class="quote-decoration">
+                        安德鲁认为，了解复合增长的意义以及长期复合增长的稀缺性十分重要。这与"涨了就卖"的想法是对立的，但我认为这对于长期投资的成功至关重要。正如查理·芒格所说，"复合增长的首要规则是永远不要在不必要的时候打断它。"
+                    </blockquote>
+
+                    <p>当成长股上涨时，其中会夹杂一定程度的乐观情绪，这种乐观情绪会在市场纠偏的过程中逐渐消逝，这对最坚定的投资者来说都会构成考验。由于成长股的价值取决于长期的现金流折现，因此<span class="highlight">利率变化对其估值的影响比对价值主要来自短期现金流的公司的影响要大得多</span>。</p>
+                    
+                    <div class="my-10 bg-gray-50 dark:bg-gray-700 rounded-xl p-6">
+                        <h3 class="text-xl font-semibold mb-4">成长与价值的平衡</h3>
+                        <p>在过去的13年中，成长股的表现明显超过了价值股，以至于大家都在问这能否长期持续。透过与安德鲁的讨论，我得出结论：我们所处的投资环境瞬息万变，太纠结于"成长"或"价值"这两个概念无法很好帮助我们在投资中获利。</p>
+                        <p class="mt-4">从积极的一面来看，成功的企业在长期高速增长，持久且越来越高效，这让它们的高估值显得很合理。从消极的一面看，这也给投资者带来了巨大的诱惑，使投资者高估一些没有那么高增长预期的公司。</p>
+                    </div>
+
+                    <h3>优质成长股的特质</h3>
+                    <p>只要认定公司未来仍能成长，并值得投资，那么就不应该在多头获利的市场卖出股票。宁可抱牢这些股票不放，因为<span class="highlight">增值潜力雄厚的公司很难找，如能了解和运用良好的基本原则，相信真正出色的公司和平凡的公司一定会有差异，而且准确度可能高达90%</span>。</p>
+                    
+                    <p>真正出色的公司，数量相当少，往往也难以以低廉价格买到。因此，<span class="highlight">在某些特殊的时期，当有利的价格出现时，应充分掌握时机，资金集中在最有利的机会上</span>。买入那些创业或小型公司，必须小心的进行分散化投资。花费数年时间，慢慢集中投资在少数几家公司上。</p>
+                    
+                    <div class="my-10 bg-primary-50 dark:bg-primary-900/20 rounded-xl p-6 border border-primary-100 dark:border-primary-800">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-primary-100 dark:bg-primary-900 w-10 h-10 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-quote-left text-primary-600 dark:text-primary-400"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold">查理·芒格论成长投资</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            "我和沃伦一样，年轻的时候，我也是四处翻找能赚钱的小股票，例如，我可能找到一家小公司，价格特别便宜，因为它在粉单市场交易，没几个人知道。后来，我不愿意四处翻找了，我改变了原来的想法。我开始投资优秀的公司，投资我喜欢的生意，开始寻找具有竞争优势，将来能发展得很好的公司。年纪大了以后，我又改变了想法，开始投资优秀公司中的伟大公司。我觉得只要持有三两个伟大公司这么投资才称心如意，而且我需要操心的事也更少了，这多好啊。"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 投资哲学 -->
+    <section id="investment-philosophy" class="py-20 bg-white dark:bg-gray-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-12 fade-in">
+                    <span class="title-decoration">投资哲学：市场、思维与决策</span>
+                </h2>
+                
+                <div class="prose prose-lg max-w-none dark:prose-invert content fade-in">
+                    <p>在投资业务方面，我们头脑中的思维模式有助于我们回答"未来将如何发展？"的问题，但是将"均值回归"的思维模型应用于"褪色"的商业模型将导致错误的结论。</p>
+                    
+                    <blockquote class="quote-decoration">
+                        当我们听到"这次不一样"时，我们的默认反应是非常怀疑，我们会回顾那些造成重大损失的投机狂热和金融创新的历史。正是这种怀疑降低了价值投资者赔钱的可能性。然而，在一个创新又多又快的世界里，这种心态应该与深刻的好奇心、对新想法的开放以及愿意学习的态度相结合。创新的本质通常是这样的：在一开始，只有少数人相信一些与根深蒂固的现状相比显得荒谬的东西。
+                    </blockquote>
+
+                    <p>许多IQ很高的人却是糟糕的投资者，原因是他们的品性缺陷。</p>
+                    
+                    <p>面临投资的新时代，我认为基本面投资者需要更加谨慎考量各种情况——包括那些严重依赖无形资产并在遥远未来才可能有增长的情况——以期获得真正的洞见。但这在一定程度上是与价值投资者的心态相悖的。对于价值投资者来说，<span class="highlight">它们坚持的是可观察到的价值，而不去关注那些转瞬即逝的不确定性</span>。</p>
+
+                    <div class="my-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6">
+                            <h4 class="text-lg font-semibold mb-3">成功的投资三要素</h4>
+                            <ul class="list-disc pl-5 space-y-2 text-gray-700 dark:text-gray-300">
+                                <li>激进买入</li>
+                                <li>选择时机</li>
+                                <li>操作技能</li>
+                            </ul>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-700 rounded-xl p-6">
+                            <h4 class="text-lg font-semibold mb-3">马克斯的风险准则</h4>
+                            <p class="text-gray-700 dark:text-gray-300">
+                                风险必须是：<br>
+                                - 你所意识到的风险<br>
+                                - 你可以分析的风险<br>
+                                - 你可以分散的风险<br>
+                                - 承担后会获得丰厚回报的风险
+                            </p>
+                        </div>
+                    </div>
+
+                    <h3>学习与成长</h3>
+                    <p>我这辈子遇到的聪明人没有不每天阅读的——一个都没有。实际上，阅读100本商业传记比阅读100本投资书更好。</p>
+                    
+                    <p>查理·芒格说："如果你适度地痴迷于某件事，就算它是断断续续的，只要专注的时间周期足够长，你不断地为解决难题而努力，你就会跌跌撞撞地得到一个答案。这是人生的半个秘方。"</p>
+                    
+                    <div class="my-10 bg-primary-50 dark:bg-primary-900/20 rounded-xl p-6 border border-primary-100 dark:border-primary-800">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-primary-100 dark:bg-primary-900 w-10 h-10 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-lightbulb text-primary-600 dark:text-primary-400"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold">芒格的智慧</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            "只要做好准备，在人生中抓住几个机会。迅速地采取适当的行动，去做简单而合乎逻辑的事情，这辈子的财富就会得到极大的增长。"
+                        </p>
+                        <p class="text-gray-700 dark:text-gray-300 mt-4">
+                            "你要做的最正确的投资就是买一本书！因为你只是花费了很少的金钱就获得了作者人生很多年的体悟与思考。"
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 实战思考 -->
+    <section id="investment-practice" class="py-20 bg-gray-50 dark:bg-gray-900">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold mb-12 fade-in">
+                    <span class="title-decoration">实战思考：投资实践与经验教训</span>
+                </h2>
+                
+                <div class="prose prose-lg max-w-none dark:prose-invert content fade-in">
+                    <p>投资成功三要素：激进买入，选择时机，操作技能。</p>
+                    
+                    <blockquote class="quote-decoration">
+                        如果盯着压力买了一些别人看不上的资产，没有上涨，反而下跌了，你必须有足够的信心，才能持有这些资产，甚至进一步加仓。
+                    </blockquote>
+
+                    <p>流行程度与赚钱成反比。巴菲特说：最先做的是聪明人，最后做的是傻瓜。</p>
+                    
+                    <p>在一个周期之间发生的事，不应该理解成一个事件接着另一个事件，而是应该理解为<span class="highlight">一个事件引发了另一个事件</span>。</p>
+
+                    <div class="my-10 bg-gray-50 dark:bg-gray-700 rounded-xl p-6">
+                        <h3 class="text-xl font-semibold mb-4">经济预测的局限</h3>
+                        <p>经济预测对投资无用：</p>
+                        <ol class="list-decimal pl-5 space-y-1 mt-2">
+                            <li>要达到平均水平，指数基金或者参考指数投资就好</li>
+                            <li>真正的投资，必须跑赢其他投资人，跑赢市场平均水平</li>
+                            <li>仅仅预判即将发生的事，不能保证你获得卓越的相对业绩</li>
+                            <li>你只要错得比其他投资人更少，就能取得成功</li>
+                            <li>投资成功需要一个超越大众的卓越预测</li>
+                        </ol>
+                        <p class="mt-4">而卓越的预测很难达到，且往往不会发生，要么就会承受多次错误。</p>
+                    </div>
+
+                    <h3>关于时机与持有</h3>
+                    <p>每个月都找到机会投资的人，一般来说，是失败者，<span class="highlight">你需要的是耐心和在机会来临时下重注</span>。这个结合有点奇怪，但确是好的成功之道。</p>
+                    
+                    <p>如果你不能明白自己处于哪个位置，就会很被动，你就忽视了主动调整以改变胜率的机会。在三个方面投入分析研究，收获会很多：基本面、市场面、组合面。</p>
+                    
+                    <p>当大家都充满怀疑的时候，证券价格倾向于反映其价值。而投资人恐慌失望，夺路而逃的时候，往往会低于其价值，是更好的时机。</p>
+                    
+                    <div class="my-10 bg-primary-50 dark:bg-primary-900/20 rounded-xl p-6 border border-primary-100 dark:border-primary-800">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-primary-100 dark:bg-primary-900 w-10 h-10 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-quote-left text-primary-600 dark:text-primary-400"></i>
+                            </div>
+                            <h4 class="text-lg font-semibold">关于持有优质资产</h4>
+                        </div>
+                        <p class="text-gray-700 dark:text-gray-300">
+                            "我还买过 50~60 只其他股票，它们都让我赚了钱。当然，我也亏过钱，有两次投资缩水过50% ，还有很多次损失 10% 的经历，这其实就是做投资生意的成本。然而，大多数的情况是，一只股票温和地下跌后，我会买入更多，最后它还是带来了巨大的回报。但是，这些例子和那14只赚大钱的股票相比起来，实在是没有什么好说的。我持有它们的周期都很长，最短的都有 8~9 年，最长的有 30 年。我不喜欢把时间浪费到赚许多次小钱上面，我需要的是巨大的回报，为此我愿意等待。"
+                        </p>
+                    </div>
+
+                    <h3>保持简单与专注</h3>
+                    <p>投资最重要的是保存实力，而不是获得丰厚的收益，必须将这一点铭记于心。如果你仅得到了合理的回报，且承受了最小的损失，那么你终将成为富人，而且你会超越所有赌友，这也是解决失眠问题的好方法。</p>
+                    
+                    <p>做一个愚蠢的乐观主义者，花费时间去担忧无法处理的事情是没用的。如果你在管理资金时总是感到会有可怕的事情发生，那么我建议，你在余生中可以选择做一个愚蠢的乐观主义者。</p>
+                    
+                    <p>我会把好多事扔到"太难"的那一堆里，继续再做其他决定。（对好多行业、政策，其实是不可知的，那就没必要强行去碰）</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 精选名言区 -->
+    <section class="py-20 bg-gradient-to-br from-primary-600 to-primary-800 dark:from-primary-800 dark:to-primary-900 text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-3xl font-bold text-center mb-16 fade-in">
+                <span class="relative">精选名言
+                    <span class="absolute bottom-0 left-0 w-full h-1 bg-white/30 rounded-full"></span>
+                </span>
+            </h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 名言1 -->
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl shadow-lg fade-in">
+                    <p class="text-lg italic mb-4">"真正的成功不是要做一个100%的逆向投资者。当城市中的人们看到新式汽车将淘汰老式街车的时候，有人会想既然没人愿意买老式街车的股票，那我就买它们吧，这显然是荒唐的。但是能分辨出大多数人接受的行为方式中的谬误，这正是投资获得巨大成功的要诀之一。"</p>
+                    <div class="flex justify-end">
+                        <span class="font-semibold">- 霍华德·马克斯</span>
+                    </div>
+                </div>
+                
+                <!-- 名言2 -->
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl shadow-lg fade-in delay-100">
+                    <p class="text-lg italic mb-4">"股票市场上到处都是只知价格、不知价值的人。"</p>
+                    <div class="flex justify-end">
+                        <span class="font-semibold">- 查理·芒格</span>
+                    </div>
+                </div>
+                
+                <!-- 名言3 -->
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl shadow-lg fade-in delay-200">
+                    <p class="text-lg italic mb-4">"不要计较眼前的蝇头小利。如果一只股票看上去是正确的选择，当前的价格处于相当吸引人的水平，就应该'随行就市'。和一旦错失买入股票的机会而导致的损失相比，每股股票多花0.125美元、0.25美元或者0.5美元显得微不足道。"</p>
+                    <div class="flex justify-end">
+                        <span class="font-semibold">- 菲利普·费雪</span>
+                    </div>
+                </div>
+                
+                <!-- 名言4 -->
+                <div class="bg-white/10 backdrop-blur-sm p-6 rounded-xl shadow-lg fade-in delay-300">
+
+
+                <p class="text-lg italic mb-4">"成功的投资既需要进行合理的思考，也需要充分控制自己的情绪。无论是在牛市高潮时乐观地随大流买入，还是在熊市低迷时恐惧地随大流卖出，这两种行为都会影响投资业绩。"</p>
+                <div class="flex justify-end">
+                    <span class="font-semibold">- 约翰·邓普顿</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 深入学习 CTA -->
+<section class="py-16 bg-white dark:bg-gray-800">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-6 fade-in">深入探索投资智慧</h2>
+            <p class="text-lg text-gray-600 dark:text-gray-300 mb-10 fade-in delay-100">
+                希望这些投资大师的智慧能够启发您的投资思维。学习投资是一场终生的旅程，不断学习、实践和反思是成功的关键。
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 fade-in delay-200">
+                <a href="#" class="px-8 py-3 bg-primary-600 hover:bg-primary-700 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-105">
+                    获取完整电子书
+                </a>
+                <a href="#" class="px-8 py-3 bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 font-medium rounded-lg transition-all duration-300 transform hover:scale-105">
+                    加入投资学习社群
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="bg-gray-800 dark:bg-gray-900 text-white py-12">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div>
+                <h3 class="text-xl font-semibold mb-4 gradient-text">投资智慧录</h3>
+                <p class="text-gray-300 dark:text-gray-400">
+                    汇集海外投资大师的经典思想与智慧，为您的投资之路提供启迪与指引。
+                </p>
+            </div>
+            
+            <div>
+                <h3 class="text-lg font-semibold mb-4">快速导航</h3>
+                <ul class="space-y-2">
+                    <li><a href="#masters" class="text-gray-300 hover:text-white dark:text-gray-400 dark:hover:text-gray-200 transition-colors">投资大师</a></li>
+                    <li><a href="#value-investing" class="text-gray-300 hover:text-white dark:text-gray-400 dark:hover:text-gray-200 transition-colors">价值投资</a></li>
+                    <li><a href="#growth-investing" class="text-gray-300 hover:text-white dark:text-gray-400 dark:hover:text-gray-200 transition-colors">成长投资</a></li>
+                    <li><a href="#investment-philosophy" class="text-gray-300 hover:text-white dark:text-gray-400 dark:hover:text-gray-200 transition-colors">投资哲学</a></li>
+                    <li><a href="#investment-practice" class="text-gray-300 hover:text-white dark:text-gray-400 dark:hover:text-gray-200 transition-colors">实战思考</a></li>
+                </ul>
+            </div>
+            
+            <div>
+                <h3 class="text-lg font-semibold mb-4">推荐阅读</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" class="text-gray-300 hover:text-white dark:text-gray-400 dark:hover:text-gray-200 transition-colors">《投资最重要的事》</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white dark:text-gray-400 dark:hover:text-gray-200 transition-colors">《穷查理宝典》</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white dark:text-gray-400 dark:hover:text-gray-200 transition-colors">《怎样选择成长股》</a></li>
+                    <li><a href="#" class="text-gray-300 hover:text-white dark:text-gray-400 dark:hover:text-gray-200 transition-colors">《全球投资的格局》</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-700 mt-10 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-gray-400 text-sm">
+                &copy; <span id="current-year">2025</span> 投资智慧录 | 汇集海外投资大师经典思想
+            </p>
+            <div class="flex space-x-4 mt-4 md:mt-0">
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fab fa-weixin text-xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fab fa-weibo text-xl"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fas fa-envelope text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- 返回顶部按钮 -->
+<a href="#" id="backToTop" class="fixed right-6 bottom-6 p-3 bg-primary-600 text-white rounded-full shadow-lg opacity-0 pointer-events-none transition-opacity duration-300 back-to-top">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+    </svg>
+</a>
