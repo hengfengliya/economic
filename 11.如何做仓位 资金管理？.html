@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>投资仓位与资金管理指南 - 强哥财经</title>
+    <meta name="description" content="学习专业的投资仓位管理和资金分配策略，控制风险提升收益">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .section {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-in-out forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+
+        .card {
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .dark .card:hover {
+            box-shadow: 0 10px 25px -5px rgba(255, 255, 255, 0.05), 0 10px 10px -5px rgba(255, 255, 255, 0.02);
+        }
+    </style>
+</head>
+<body class="antialiased bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <!-- 导航栏 -->
+    <header class="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-sm transition-colors duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center">
+                    <i class="fas fa-chart-line text-primary-600 dark:text-primary-400 text-2xl mr-2"></i>
+                    <span class="font-bold text-xl">强哥财经</span>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="#principles" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">原理</a>
+                    <a href="#institutional" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">机构风格</a>
+                    <a href="#retail" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">散户风格</a>
+                    <a href="#notes" class="text-gray-600 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200">注意事项</a>
+                </nav>
+                <button id="theme-toggle" class="p-2 rounded-full text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none transition-colors duration-200">
+                    <i id="theme-icon" class="fas fa-moon text-lg"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- 英雄区域 -->
+    <section class="section bg-gradient-to-br from-primary-500 to-primary-700 dark:from-primary-700 dark:to-primary-900 py-20 sm:py-28">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight">如何做仓位与资金管理？</h1>
+                <p class="text-xl text-primary-100 mb-8">控制风险，拿住牛股，培养理性投资心态</p>
+                <a href="#principles" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-primary-700 bg-white hover:bg-primary-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500 shadow-md transition-all duration-300">
+                    开始学习
+                    <i class="fas fa-arrow-down ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 目录概览 -->
+    <section class="py-16 bg-white dark:bg-gray-800 transition-colors duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="section text-3xl font-bold text-center mb-12">投资资金管理的四大支柱</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- 卡片1 -->
+                <div class="section delay-100 card bg-gray-50 dark:bg-gray-700 rounded-xl p-6 border border-gray-200 dark:border-gray-600">
+                    <div class="bg-primary-100 dark:bg-primary-900/50 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-book text-primary-600 dark:text-primary-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">原理</h3>
+                    <p class="text-gray-600 dark:text-gray-300">了解仓位管理的基本原理和清盘线设置的核心逻辑</p>
+                    <a href="#principles" class="mt-4 inline-flex items-center text-primary-600 dark:text-primary-400 hover:underline">
+                        查看详情 <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+                
+                <!-- 卡片2 -->
+                <div class="section delay-200 card bg-gray-50 dark:bg-gray-700 rounded-xl p-6 border border-gray-200 dark:border-gray-600">
+                    <div class="bg-primary-100 dark:bg-primary-900/50 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-building text-primary-600 dark:text-primary-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">机构风格</h3>
+                    <p class="text-gray-600 dark:text-gray-300">从巴菲特、索罗斯和彼得林奇等投资大师的策略中学习</p>
+                    <a href="#institutional" class="mt-4 inline-flex items-center text-primary-600 dark:text-primary-400 hover:underline">
+                        查看详情 <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+                
+                <!-- 卡片3 -->
+                <div class="section delay-300 card bg-gray-50 dark:bg-gray-700 rounded-xl p-6 border border-gray-200 dark:border-gray-600">
+                    <div class="bg-primary-100 dark:bg-primary-900/50 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-user text-primary-600 dark:text-primary-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">散户风格</h3>
+                    <p class="text-gray-600 dark:text-gray-300">适合个人投资者的仓位分配策略和加减仓方法</p>
+                    <a href="#retail" class="mt-4 inline-flex items-center text-primary-600 dark:text-primary-400 hover:underline">
+                        查看详情 <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+                
+                <!-- 卡片4 -->
+                <div class="section delay-400 card bg-gray-50 dark:bg-gray-700 rounded-xl p-6 border border-gray-200 dark:border-gray-600">
+                    <div class="bg-primary-100 dark:bg-primary-900/50 w-12 h-12 rounded-full flex items-center justify-center mb-4">
+                        <i class="fas fa-exclamation-circle text-primary-600 dark:text-primary-400 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-3">注意事项</h3>
+                    <p class="text-gray-600 dark:text-gray-300">避免常见错误和针对不同年龄阶段的资产配置建议</p>
+                    <a href="#notes" class="mt-4 inline-flex items-center text-primary-600 dark:text-primary-400 hover:underline">
+                        查看详情 <i class="fas fa-chevron-right ml-1 text-xs"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 原理篇 -->
+    <section id="principles" class="py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto">
+                <div class="section flex items-center mb-8">
+                    <span class="bg-primary-600 dark:bg-primary-500 text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                        <span class="text-lg font-bold">1</span>
+                    </span>
+                    <h2 class="text-3xl font-bold">原理</h2>
+                </div>
+                
+                <div class="section delay-100 mb-10">
+                    <h3 class="text-xl font-semibold mb-4 text-primary-800 dark:text-primary-400">为何基金清盘线是0.8</h3>
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+                        <p class="mb-4">客户被清盘以后，如果是0.8清盘，那买国债，按照3%年化来算，需要9年才能回本。</p>
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full border-collapse">
+                                <thead>
+                                    <tr class="border-b border-gray-200 dark:border-gray-700">
+                                        <th class="py-3 px-4 text-left bg-gray-50 dark:bg-gray-700">清盘线</th>
+                                        <th class="py-3 px-4 text-left bg-gray-50 dark:bg-gray-700">回本所需年限（年化3%）</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b border-gray-100 dark:border-gray-800">
+                                        <td class="py-3 px-4">0.8</td>
+                                        <td class="py-3 px-4">9年</td>
+                                    </tr>
+                                    <tr class="border-b border-gray-100 dark:border-gray-800">
+                                        <td class="py-3 px-4">0.7</td>
+                                        <td class="py-3 px-4">15年</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="py-3 px-4">0.6</td>
+                                        <td class="py-3 px-4">23年</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="mt-4 text-gray-700 dark:text-gray-300">为什么不0.9清盘？金融机构不干，对散户自己也不利。</p>
+                        <div class="mt-4 bg-primary-50 dark:bg-primary-900/30 p-4 rounded-lg border-l-4 border-primary-500">
+                            <p class="font-medium">建议：把自己操作的账户视作基金账户，不必强制0.8清盘，但记住，低于0.7后会上火，你的家人也会很上火。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section delay-200 mb-10">
+                    <h3 class="text-xl font-semibold mb-4 text-primary-800 dark:text-primary-400">仓位管理的目标与重要性</h3>
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+                        <div class="mb-4">
+                            <h4 class="font-medium mb-2">仓位管理的两大目标：</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                                <li>控制资金回撤</li>
+                                <li>拿住牛股</li>
+                            </ul>
+                        </div>
+                        
+                        <blockquote class="border-l-4 border-primary-500 pl-4 italic my-6 text-gray-600 dark:text-gray-400">
+                            "没有好的仓位管理，就没有好的心态。对交易而言，理性比腰子重要。"
+                        </blockquote>
+                        
+                        <div class="mb-4">
+                            <h4 class="font-medium mb-2">巴菲特原则：</h4>
+                            <ol class="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                                <li>永远不要亏钱</li>
+                                <li>永远不要忘记第一条</li>
+                            </ol>
+                            <p class="mt-2 text-sm text-gray-600 dark:text-gray-400">这里的"亏"指的是浮亏。如果做不好仓位管理，割肉、退出、改密码，就变成永久亏损。</p>
+                        </div>
+                        
+                        <div class="bg-yellow-50 dark:bg-yellow-900/30 p-4 rounded-lg border-l-4 border-yellow-500">
+                            <p class="font-medium">风险控制的重要性：仓位管理更多是风险控制和情绪控制。满仓一个公司，能心平气和承受30%亏损的人寥寥无几。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 机构风格 -->
+    <section id="institutional" class="py-16 bg-white dark:bg-gray-800 transition-colors duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto">
+                <div class="section flex items-center mb-8">
+                    <span class="bg-primary-600 dark:bg-primary-500 text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                        <span class="text-lg font-bold">2</span>
+                    </span>
+                    <h2 class="text-3xl font-bold">机构风格</h2>
+                </div>
+                
+                <div class="section delay-100 mb-10">
+                    <h3 class="text-xl font-semibold mb-4 text-primary-800 dark:text-primary-400">两个极端案例</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- 巴菲特案例 -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-apple-alt text-gray-500 dark:text-gray-400 mr-2"></i>
+                                <h4 class="font-semibold">巴菲特买苹果</h4>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">截至2022年8月，巴菲特持有苹果5.6%股份，占伯克希尔总持仓超40%，利润近万亿。是人类史上最挣钱的一笔。</p>
+                        </div>
+                        
+                        <!-- 索罗斯案例 -->
+                        <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-pound-sign text-gray-500 dark:text-gray-400 mr-2"></i>
+                                <h4 class="font-semibold">索罗斯空英镑</h4>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300 text-sm">索罗斯90年代空英镑。其助手朱肯米勒先空，索罗斯问把握大不大，空了多少。"把握大，10亿美元"，以为会挨骂。索罗斯来了句，"为啥不空100亿！！！"。索罗斯一战成名。</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-4 bg-yellow-50 dark:bg-yellow-900/30 p-4 rounded-lg">
+                        <h4 class="font-medium mb-2 flex items-center">
+                            <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+                            盲点提醒
+                        </h4>
+                        <p class="text-gray-700 dark:text-gray-300">巴菲特看了30年苹果，观察了近100年可口可乐；索罗斯从70年代初就做对冲交易。他们的成功建立在长期深厚的经验基础上。</p>
+                    </div>
+                </div>
+                
+                <div class="section delay-200 mb-10">
+                    <h3 class="text-xl font-semibold mb-4 text-primary-800 dark:text-primary-400">彼得林奇的投资风格</h3>
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+                        <div class="mb-4">
+                            <p class="text-gray-700 dark:text-gray-300">在13年间买过15000多只股票；同一时间持有的股票达1400只。</p>
+                        </div>
+                        
+                        <div class="bg-yellow-50 dark:bg-yellow-900/30 p-4 rounded-lg mb-4">
+                            <h4 class="font-medium mb-2 flex items-center">
+                                <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+                                盲点提醒
+                            </h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                                <li>彼得林奇重仓股也就几十只</li>
+                                <li>任基金经理13年，几乎没有休假</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-primary-50 dark:bg-primary-900/30 p-4 rounded-lg">
+                            <p class="font-medium">彼得林奇建议：对于散户，持有3-10只股票就足够了</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 散户风格 -->
+    <section id="retail" class="py-16 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto">
+                <div class="section flex items-center mb-8">
+                    <span class="bg-primary-600 dark:bg-primary-500 text-white w-10 h-10 rounded-full flex items-center justify-center mr-4 flex-shrink-0">
+                        <span class="text-lg font-bold">3</span>
+                    </span>
+                    <h2 class="text-3xl font-bold">散户风格</h2>
+                </div>
+                
+                <div class="section delay-100 mb-10">
+                    <h3 class="text-xl font-semibold mb-4 text-primary-800 dark:text-primary-400">仓位分散策略</h3>
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+                        <div class="mb-6">
+                            <div class="flex flex-wrap gap-3 mb-4">
+                                <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/50 text-primary-800 dark:text-primary-300 rounded-full text-sm">单只股票不超过2成</span>
+                                <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/50 text-primary-800 dark:text-primary-300 rounded-full text-sm">单个行业不超过3成</span>
+                                <span class="px-3 py-1 bg-primary-100 dark:bg-primary-900/50 text-primary-800 dark:text-primary-300 rounded-full text-sm">股票数6只左右</span>
+                            </div>
+                            <p class="text-gray-700 dark:text-gray-300">控制回撤，分散风险。比如芯片大跌，部分个股跌超90%，如果不控制仓位，单只个股就能给账户带来灾难。更别提退市公司。A股魔咒，总会踩到狗屎，与水平无关。</p>
+                        </div>
+                        
+                        <div class="mb-4">
+                            <h4 class="font-medium mb-2">跨市场投资建议：</h4>
+                            <ul class="list-disc list-inside space-y-2 text-gray-700 dark:text-gray-300">
+                                <li>开通港股：股票数量可放松到10只左右，但单只票别超过1.5成</li>
+                                <li>同时有美股：要更分散些，美股单只票仓位要更轻</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-yellow-50 dark:bg-yellow-900/30 p-4 rounded-lg">
+                            <p class="text-gray-700 dark:text-gray-300">股票数千万别太多，不然很难跑赢大盘。35岁以后，精力下降，但阅历提升，只做自己有把握的行业。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section delay-200 mb-10">
+                    <h3 class="text-xl font-semibold mb-4 text-primary-800 dark:text-primary-400">位置决定仓位</h3>
+                    <div class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-sm border border-gray-200 dark:border-gray-700">
+                        <div class="mb-6">
+                            <h4 class="font-medium mb-2">初入市场的情况：</h4>
+                            <p class="text-gray-700 dark:text-gray-300">指数、个股相对低位重仓，相对高位轻仓（很油滑）。</p>
+                            <p class="mt-2 text-gray-600 dark:text-gray-400 text-sm">以2022年10月为例，3200点7成，3100点8成，3000点9成。熊市不能满仓。</p>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <h4 class="font-medium mb-2">账户有浮亏的情况：</h4>
+                            <p class="text-gray-700 dark:text-gray-300">浮亏情况下加仓要谨慎。倒金字塔加仓，比如单只票初始10万，每跌10%加5万、2.5万、1.25万，加仓部分别超过初始仓位，总仓位别超过2成。别一跌就加。</p>
+                        </div>
+                        
+                        <div class="mb
