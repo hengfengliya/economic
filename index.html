@@ -1,16 +1,277 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>经济网站</title>
+    <title>强哥财经导航 | 投资智慧</title>
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            200: '#bae6fd',
+                            300: '#7dd3fc',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            800: '#075985',
+                            900: '#0c4a6e',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out forwards',
+                        'slide-up': 'slideUp 0.5s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: 0 },
+                            '100%': { opacity: 1 },
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(20px)', opacity: 0 },
+                            '100%': { transform: 'translateY(0)', opacity: 1 },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+        }
+        
+        /* 添加卡片悬停效果 */
+        .resource-card {
+            transition: all 0.2s ease-in-out;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-2px) scale(1.005);
+        }
+        
+        .delayed-animation {
+            opacity: 0;
+            animation-delay: calc(var(--delay) * 150ms);
+            animation-fill-mode: forwards;
+        }
+        
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* 加载动画 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
 </head>
-<body>
-    <h1>欢迎访问我的经济网站</h1>
-    <p>点击以下链接访问内容：</p>
-    <ul>
-        <li><a href="11如何做价值投资.html">如何做价值投资</a></li>
-        <li><a href="海外大V与我党要害文档.html">海外大V与我党要害文档</a></li>
-    </ul>
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <div class="min-h-screen flex flex-col">
+        <!-- 导航栏 -->
+        <nav class="sticky top-0 z-50 bg-white dark:bg-gray-800 shadow-sm">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <div class="flex-shrink-0 flex items-center">
+                            <span class="material-icons-round text-primary-600 dark:text-primary-400 mr-2">trending_up</span>
+                            <span class="font-bold text-xl text-primary-700 dark:text-primary-300">强哥财经</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">
+                            <span class="material-icons-round block dark:hidden">dark_mode</span>
+                            <span class="material-icons-round hidden dark:block">light_mode</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- 主内容区 -->
+        <main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-12 animate-fade-in">
+            <!-- 页头 -->
+            <div class="max-w-3xl mx-auto mb-12 text-center">
+                <h1 class="text-3xl md:text-4xl font-bold mb-4 text-primary-700 dark:text-primary-300 animate-slide-up">
+                    投资智慧导航
+                </h1>
+                <p class="text-lg text-gray-600 dark:text-gray-300 animate-slide-up" style="--delay: 1">
+                    精选投资学习资源，助您迈向财务自由之路
+                </p>
+            </div>
+            
+            <!-- 资源卡片区 -->
+            <div class="max-w-3xl mx-auto space-y-6">
+                <!-- 资源卡片 1 -->
+                <div class="resource-card delayed-animation bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 overflow-hidden animate-slide-up" style="--delay: 2">
+                    <a href="11.如何做仓位 资金管理？.html" class="block p-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mr-5">
+                                <span class="material-icons-round text-3xl text-blue-600 dark:text-blue-400">
+                                    account_balance_wallet
+                                </span>
+                            </div>
+                            <div class="flex-1">
+                                <h2 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-100">
+                                    仓位与资金管理
+                                </h2>
+                                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                    学习如何合理分配投资组合，管理资金风险，提高投资安全性和长期收益率。掌握仓位管理技巧，让资金更高效地为您工作。
+                                </p>
+                                <div class="flex items-center text-primary-600 dark:text-primary-400 font-medium">
+                                    <span>查看详情</span>
+                                    <span class="material-icons-round ml-1 text-sm">arrow_forward</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <!-- 资源卡片 2 -->
+                <div class="resource-card delayed-animation bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md border border-gray-100 dark:border-gray-700 overflow-hidden animate-slide-up" style="--delay: 3">
+                    <a href="海外大佬 马克斯 费雪 芒格 邓普顿 - .html" class="block p-6">
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0 mr-5">
+                                <span class="material-icons-round text-3xl text-green-600 dark:text-green-400">
+                                    insights
+                                </span>
+                            </div>
+                            <div class="flex-1">
+                                <h2 class="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-100">
+                                    海外投资大师智慧录
+                                </h2>
+                                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                                    探索马克斯、费雪、芒格、邓普顿等投资大师的经典思想与投资策略。从这些华尔街传奇人物身上汲取智慧，构建自己的投资哲学。
+                                </p>
+                                <div class="flex items-center text-primary-600 dark:text-primary-400 font-medium">
+                                    <span>查看详情</span>
+                                    <span class="material-icons-round ml-1 text-sm">arrow_forward</span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- 提示卡片 -->
+            <div class="max-w-3xl mx-auto mt-8 delayed-animation animate-slide-up" style="--delay: 4">
+                <div class="bg-blue-50 dark:bg-blue-900/30 border border-blue-100 dark:border-blue-800 rounded-lg p-4 flex items-start">
+                    <span class="material-icons-round text-blue-600 dark:text-blue-400 mr-3">lightbulb</span>
+                    <p class="text-sm text-blue-800 dark:text-blue-200">
+                        投资有风险，入市需谨慎。本站内容仅供学习参考，不构成任何投资建议。请根据自身情况做出判断，理性投资。
+                    </p>
+                </div>
+            </div>
+        </main>
+        
+        <!-- 页脚 -->
+        <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-12 mt-16">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto">
+                    <div class="flex flex-col md:flex-row md:justify-between items-center">
+                        <div class="mb-8 md:mb-0 text-center md:text-left">
+                            <div class="flex items-center justify-center md:justify-start mb-4">
+                                <span class="material-icons-round text-primary-600 dark:text-primary-400 mr-2">trending_up</span>
+                                <span class="font-bold text-xl text-primary-700 dark:text-primary-300">强哥财经</span>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-400 text-sm">
+                                让投资更简单，让财富可持续
+                            </p>
+                        </div>
+                        <div class="flex space-x-4">
+                            <a href="https://github.com/hengfengliya" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-300 transition-colors">
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                            <a href="https://twitter.com/hengfengliya" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-300 transition-colors">
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84" />
+                                </svg>
+                            </a>
+                            <a href="https://linkedin.com/in/hengfengliya" target="_blank" rel="noopener noreferrer" class="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-300 transition-colors">
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700 text-sm text-gray-500 dark:text-gray-400 text-center">
+                        <p>© 2025 强哥财经 版权所有</p>
+                        <p class="mt-2">
+                            作者：强哥 | <a href="index.html" class="text-primary-600 dark:text-primary-400 hover:underline">返回首页</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // 深色模式切换
+        document.addEventListener('DOMContentLoaded', () => {
+            // 检查用户是否已设置颜色模式偏好
+            const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            const savedTheme = localStorage.getItem('theme');
+            
+            // 如果用户已设置主题偏好，使用该偏好；否则，跟随系统设置
+            if (savedTheme) {
+                document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+            } else {
+                document.documentElement.classList.toggle('dark', darkModeMediaQuery.matches);
+            }
+            
+            // 主题切换按钮功能
+            const themeToggleBtn = document.getElementById('theme-toggle');
+            themeToggleBtn.addEventListener('click', () => {
+                const isDark = document.documentElement.classList.toggle('dark');
+                localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            });
+
+            // 监听系统主题变化
+            darkModeMediaQuery.addEventListener('change', (e) => {
+                if (!localStorage.getItem('theme')) {
+                    document.documentElement.classList.toggle('dark', e.matches);
+                }
+            });
+            
+            // 为各元素添加动画
+            document.querySelectorAll('.delayed-animation').forEach(element => {
+                element.classList.add('animate-fade-in');
+            });
+        });
+        
+        // 在第一次滚动时执行一次的动画
+        let hasScrolled = false;
+        window.addEventListener('scroll', () => {
+            if (!hasScrolled) {
+                hasScrolled = true;
+                // 这里可以添加仅在第一次滚动时执行的动画
+            }
+        });
+    </script>
 </body>
 </html>
