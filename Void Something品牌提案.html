@@ -1,0 +1,775 @@
+```html
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上海虚空有物科技有限公司 | 于未知处，见未来值</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Inter:wght@300;400;500;700&family=Montserrat:wght@500;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --deep-space: #0A1128;
+            --nebula-purple: #3C1874;
+            --nav-silver: #E0E1E9;
+            --star-gold: #D4B254;
+            --tech-teal: #1B998B;
+            --space-gray: #2D3142;
+            --void-black: #080B14;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans SC', 'Inter', sans-serif;
+            background-color: var(--deep-space);
+            color: var(--nav-silver);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, blockquote {
+            font-family: 'Noto Serif SC', 'Montserrat', serif;
+            font-weight: 700;
+        }
+        
+        .cosmic-container {
+            max-width: 1440px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 深空背景 */
+        .deep-space-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at top right, rgba(60, 24, 116, 0.2), transparent 70%),
+                        linear-gradient(to bottom, var(--deep-space), var(--void-black));
+            z-index: -2;
+            overflow: hidden;
+        }
+        
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(1px 1px at 25% 15%, white, transparent),
+                radial-gradient(1px 1px at 50% 40%, white, transparent),
+                radial-gradient(1px 1px at 75% 65%, white, transparent),
+                radial-gradient(1.5px 1.5px at 10% 85%, white, transparent),
+                radial-gradient(1.5px 1.5px at 30% 25%, white, transparent),
+                radial-gradient(1.5px 1.5px at 60% 80%, white, transparent),
+                radial-gradient(1px 1px at 90% 35%, white, transparent);
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            opacity: 0.3;
+            z-index: -1;
+        }
+        
+        /* 导航元素 */
+        .nav-element {
+            position: absolute;
+            top: 50%;
+            right: 10%;
+            width: 300px;
+            height: 300px;
+            transform: translateY(-50%);
+            opacity: 0.7;
+            z-index: 1;
+        }
+        
+        .nav-element:before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 180px;
+            height: 180px;
+            border: 1px solid rgba(224, 225, 233, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .nav-element:after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 240px;
+            height: 240px;
+            border: 1px dashed rgba(224, 225, 233, 0.15);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .nav-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background-color: var(--star-gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(212, 178, 84, 0.7);
+        }
+        
+        .nav-dot:nth-child(1) {
+            top: 30%;
+            left: 20%;
+        }
+        
+        .nav-dot:nth-child(2) {
+            top: 70%;
+            left: 30%;
+        }
+        
+        .nav-dot:nth-child(3) {
+            top: 40%;
+            left: 80%;
+        }
+        
+        .nav-dot:nth-child(4) {
+            top: 60%;
+            left: 60%;
+        }
+        
+        .nav-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 20px;
+            height: 20px;
+            background-color: var(--tech-teal);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 15px rgba(27, 153, 139, 0.8);
+        }
+        
+        .nav-line {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120px;
+            height: 1px;
+            background: linear-gradient(to right, rgba(27, 153, 139, 0.8), rgba(224, 225, 233, 0.1));
+            transform-origin: left center;
+        }
+        
+        .nav-line:nth-child(1) {
+            transform: translate(-50%, -50%) rotate(30deg);
+        }
+        
+        .nav-line:nth-child(2) {
+            transform: translate(-50%, -50%) rotate(150deg);
+        }
+        
+        .nav-line:nth-child(3) {
+            transform: translate(-50%, -50%) rotate(270deg);
+        }
+        
+        /* 首屏设计 */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+        }
+        
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            max-width: 800px;
+            background: linear-gradient(to right, var(--nav-silver), var(--star-gold));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-subtitle {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            max-width: 650px;
+            margin-bottom: 3rem;
+            color: rgba(224, 225, 233, 0.85);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .highlight {
+            color: var(--star-gold);
+            font-weight: 500;
+        }
+        
+        .tech-highlight {
+            color: var(--tech-teal);
+            font-weight: 500;
+        }
+        
+        /* 品牌核心解读部分 */
+        .brand-core-section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            color: var(--nav-silver);
+            position: relative;
+            max-width: 800px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 0;
+            width: 100px;
+            height: 2px;
+            background: linear-gradient(to right, var(--star-gold), transparent);
+        }
+        
+        .core-interpretation {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            position: relative;
+        }
+        
+        @media (min-width: 768px) {
+            .core-interpretation {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .core-card {
+            background: linear-gradient(135deg, rgba(10, 17, 40, 0.7), rgba(45, 49, 66, 0.4));
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            padding: 2.5rem;
+            border: 1px solid rgba(224, 225, 233, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .core-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .core-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, var(--star-gold), var(--tech-teal));
+            opacity: 0.7;
+        }
+        
+        .core-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--nav-silver);
+        }
+        
+        .core-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: rgba(224, 225, 233, 0.8);
+        }
+        
+        /* 核心价值观部分 */
+        .core-values-section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 4rem;
+        }
+        
+        .value-card {
+            background: linear-gradient(135deg, rgba(60, 24, 116, 0.2), rgba(10, 17, 40, 0.6));
+            border-radius: 12px;
+            padding: 2.5rem;
+            border: 1px solid rgba(224, 225, 233, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .value-icon {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .value-icon svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .value-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--star-gold);
+        }
+        
+        .value-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: rgba(224, 225, 233, 0.8);
+        }
+        
+        /* 品牌故事部分 */
+        .brand-story-section {
+            padding: 6rem 2rem;
+            position: relative;
+            background: linear-gradient(to bottom, rgba(10, 17, 40, 0.8), rgba(60, 24, 116, 0.1));
+        }
+        
+        .story-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+        
+        .story-quote {
+            font-size: 1.5rem;
+            line-height: 1.6;
+            padding: 2rem;
+            margin: 3rem 0;
+            border-left: 3px solid var(--star-gold);
+            background: rgba(10, 17, 40, 0.5);
+            color: var(--nav-silver);
+            font-family: 'Noto Serif SC', serif;
+            position: relative;
+        }
+        
+        .story-quote::before {
+            content: '"';
+            position: absolute;
+            top: 0;
+            left: 1rem;
+            font-size: 4rem;
+            color: rgba(212, 178, 84, 0.2);
+            line-height: 1;
+        }
+        
+        /* 应用示例部分 */
+        .applications-section {
+            padding: 6rem 2rem;
+            position: relative;
+        }
+        
+        .applications-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        
+        .application-card {
+            background: rgba(45, 49, 66, 0.3);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .application-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .application-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, var(--nebula-purple), var(--deep-space));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--nav-silver);
+            font-size: 3rem;
+        }
+        
+        .application-content {
+            padding: 1.5rem;
+        }
+        
+        .application-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--nav-silver);
+        }
+        
+        .application-content p {
+            font-size: 0.9rem;
+            color: rgba(224, 225, 233, 0.7);
+        }
+        
+        /* 页脚 */
+        .footer {
+            padding: 4rem 2rem;
+            background: var(--void-black);
+            text-align: center;
+        }
+        
+        .footer-logo {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--nav-silver);
+        }
+        
+        .footer-text {
+            max-width: 600px;
+            margin: 0 auto;
+            color: rgba(224, 225, 233, 0.6);
+            font-size: 0.9rem;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin: 2rem 0;
+            gap: 1.5rem;
+        }
+        
+        .footer-link {
+            color: var(--nav-silver);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            color: var(--star-gold);
+        }
+        
+        .copyright {
+            font-size: 0.8rem;
+            color: rgba(224, 225, 233, 0.4);
+            margin-top: 2rem;
+        }
+        
+        /* 自定义滚动条 */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--deep-space);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: rgba(224, 225, 233, 0.2);
+            border-radius: 5px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(224, 225, 233, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- 深空背景 -->
+    <div class="deep-space-bg">
+        <div class="stars"></div>
+    </div>
+    
+    <!-- 导航栏 -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-opacity-30 backdrop-blur-md bg-[#0A1128] border-b border-opacity-10 border-[#E0E1E9]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-[#E0E1E9] font-serif text-xl font-bold">虚空有物</a>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#brand-core" class="text-[#E0E1E9] hover:text-[#D4B254] text-sm transition-colors">品牌核心</a>
+                    <a href="#core-values" class="text-[#E0E1E9] hover:text-[#D4B254] text-sm transition-colors">核心价值观</a>
+                    <a href="#brand-story" class="text-[#E0E1E9] hover:text-[#D4B254] text-sm transition-colors">品牌故事</a>
+                    <a href="#applications" class="text-[#E0E1E9] hover:text-[#D4B254] text-sm transition-colors">应用示例</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button class="text-[#E0E1E9]">
+                        <i class="ri-menu-line text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- 首屏 -->
+    <section class="hero-section">
+        <div class="cosmic-container">
+            <h1 class="hero-title">上海虚空有物科技有限公司</h1>
+            <p class="hero-subtitle">于<span class="highlight">未知处</span>，见<span class="highlight">未来值</span>。我们是您在<span class="tech-highlight">科技未来</span>征途上的长期价值领航者。</p>
+            <div class="nav-element">
+                <div class="nav-dot"></div>
+                <div class="nav-dot"></div>
+                <div class="nav-dot"></div>
+                <div class="nav-dot"></div>
+                <div class="nav-line"></div>
+                <div class="nav-line"></div>
+                <div class="nav-line"></div>
+                <div class="nav-center"></div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 品牌核心解读 -->
+    <section id="brand-core" class="brand-core-section">
+        <div class="cosmic-container">
+            <h2 class="section-title">品牌核心解读</h2>
+            <div class="core-interpretation">
+                <div class="core-card">
+                    <h3>"虚空" (Void) 的深度诠释</h3>
+                    <p>不仅仅是未知，更是潜能的场域。"虚空"代表着市场的复杂性与非有效性，前沿科技的萌芽阶段，以及超越现有认知框架的可能性。它意味着巨大的机遇，但也伴随着风险和迷雾，需要探索者具备非凡的勇气、耐心和洞察力。</p>
+                </div>
+                <div class="core-card" style="margin-top: 2rem;">
+                    <h3>"有物" (Substance) 的具体指向</h3>
+                    <p>价值的显现与锚定。"有物"是在"虚空"中通过深度研究和专业判断所发现、确认并最终持有的核心价值载体。它代表着真实的商业价值，可验证的成长逻辑，以及为客户创造的实在回报。从洞察到持有，它需要严谨的尽职调查、审慎的估值定价和长期陪伴。</p>
+                </div>
+                <div class="core-card">
+                    <h3>"科技" (Technology) 的核心角色</h3>
+                    <p>探索"虚空"的导航仪与驱动力。科技不仅是公司关注的投资领域，更是其探索未知、发现价值的核心方法论。它赋能洞察，聚焦未来，提升决策质量，是连接"虚"与"实"的桥梁，使得从抽象概念到具体实体的转化过程更为清晰和可控。</p>
+                </div>
+                <div class="core-card" style="margin-top: 2rem;">
+                    <h3>"虚空有物" 的整体哲学与能力</h3>
+                    <p>于无人处见真章。"虚空有物"的精髓在于能够在看似混沌、充满不确定性的环境中，发掘并捕获那些被市场忽视或低估的、具有长期确定性价值的"珍珠"。它强调动态平衡、长期主义，是向客户传递的独特价值主张：我们拥有在复杂和不确定的科技前沿领域，为您找到并持有真正具备长期价值的核心资产的独特能力。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 核心价值观 -->
+    <section id="core-values" class="core-values-section">
+        <div class="cosmic-container">
+            <h2 class="section-title">品牌核心价值观</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="12" cy="12" r="10" stroke="#D4B254" stroke-width="1.5" stroke-opacity="0.6"/>
+                            <path d="M12 7V12L15 15" stroke="#D4B254" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M7 3.5L17 3.5" stroke="#1B998B" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M12 2V4" stroke="#1B998B" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>远见 (Visionary)</h3>
+                    <p>洞察未来，先行一步。不仅仅是预测，更是基于对科技发展规律、产业演变路径和社会宏观趋势的深刻理解，形成超越当前市场共识的前瞻性判断。是拥有在"虚空"的迷雾中辨识未来航向的能力。</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 22V12M12 12V2M12 12H2M12 12H22" stroke="#D4B254" stroke-width="1.5" stroke-linecap="round"/>
+                            <circle cx="12" cy="12" r="4" stroke="#1B998B" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h3>深度 (In-depth)</h3>
+                    <p>穷究本质，根植研究。对认知的极致追求，不满足于表面信息和市场噪音。强调通过严谨、细致、多维度的研究，穿透"虚空"的表象，直达事物的本质和核心价值，确保在"虚空"中找到的"有物"是真正扎实可靠的。</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="6" width="18" height="15" rx="2" stroke="#D4B254" stroke-width="1.5"/>
+                            <path d="M8 6V4C8 2.89543 8.89543 2 10 2H14C15.1046 2 16 2.89543 16 4V6" stroke="#D4B254" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M8 14L11 17L16 11" stroke="#1B998B" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>务实 (Pragmatic)</h3>
+                    <p>链接理想，落地价值。将远见卓识与现实世界的商业逻辑和执行能力相结合。强调投资不仅要有想象力，更要有可行的路径和最终创造真实价值的能力，确保"有物"的实在性，平衡创新探索与投资纪律。</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#D4B254" stroke-width="1.5"/>
+                            <path d="M12 8V16" stroke="#1B998B" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M16 12H8" stroke="#1B998B" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>坚韧 (Resilient)</h3>
+                    <p>笃行致远，穿越周期。秉持"长期主义"的核心信念，具备在市场波动和不确定性面前保持战略定力、坚守投资原则的品质。相信通过深度研究找到的"有物"的内在价值，并有耐心等待其价值实现。</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4 6H20" stroke="#D4B254" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M4 10H20" stroke="#D4B254" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M4 14H12" stroke="#D4B254" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M4 18H8" stroke="#D4B254" stroke-width="1.5" stroke-linecap="round"/>
+                            <path d="M16 18C16 16.3431 17.3431 15 19 15C20.6569 15 22 16.3431 22 18C22 19.6569 20.6569 21 19 21C17.3431 21 16 19.6569 16 18Z" stroke="#1B998B" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h3>智慧 (Intelligent)</h3>
+                    <p>科技赋能，认知驱动。不仅指团队成员的才智，更强调系统性地运用科学方法和先进工具来提升认知效率和决策质量。是用智慧之光照亮"虚空"，更精准地定位"有物"，在复杂环境中保持认知领先和决策优势。</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="#D4B254" stroke-width="1.5"/>
+                            <path d="M12 16V16.01" stroke="#1B998B" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M12 12V8" stroke="#1B998B" stroke-width="1.5" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>信赖 (Trustworthy)</h3>
+                    <p>恪守 fiduciary duty，客户为本。作为私募投顾，诚信是生存之本。意味着对客户的绝对忠诚、透明和负责，将客户的利益置于首位。是"有物"最终交付给客户时的品质保证，是客户愿意将财富托付给"虚空有物"去探索未来的前提。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 品牌故事/叙事 -->
+    <section id="brand-story" class="brand-story-section">
+        <div class="cosmic-container">
+            <h2 class="section-title">品牌故事</h2>
+            <div class="story-content">
+                <p>我们正处在一个加速变革的时代。科技的浪潮以前所未有的力量重塑着世界，未来的轮廓在飞速的迭代中时而清晰，时而模糊。这片由数据、算法、基因序列、新材料、智能机器交织而成的广袤图景，既是充满无限可能的 "虚空" (Void)，蕴藏着驱动下一个世代文明跃迁的巨大潜能；也是一片充满噪音、迷雾和不确定性的未知领域，让无数探索者目眩神迷，或失之交臂。</p>
+                
+                <div class="story-quote">
+                    短期的喧嚣容易掩盖长期的价值，眼前的热点往往遮蔽了未来的航向。在这样一个机遇与挑战并存的"虚空"面前，大多数人选择观望、跟随，或是在变幻莫测的市场波动中焦虑不安。
+                </div>
+                
+                <p>而上海虚空有物科技有限公司，正是为"向未知出发"而生。</p>
+                
+                <p>我们的名字，即是我们的哲学，也是我们的方法论。"虚空"并非意味着虚无，而是代表着一切价值的起源之地——那些未被主流发现的角落、尚未被完全理解的创新、以及蕴藏在复杂性背后的结构性机遇。我们不畏惧"虚空"的浩渺与深邃，反而视其为需要以<span class="highlight">远见</span>去洞察、以<span class="highlight">智慧</span>去照亮的价值源泉。</p>
+                
+                <p>我们深信，真正的、能够穿越周期的价值——那坚实的<span class="highlight">"有物"</span>——并非显而易见，它需要被发掘，被验证，被坚守。这要求我们必须沉潜下去，进行<span class="highlight">深度</span>的研究。我们摒弃浮躁的表面追逐，运用第一性原理思考，结合前沿的科技工具与数据分析，去穷究技术的本质、商业的逻辑和成长的驱动力，力求在纷繁的信息噪音中，辨识出那些真正具有长期生命力的价值核心。</p>
+                
+                <p>我们的征途，是科技未来。我们聚焦于那些将深刻改变人类生活和社会运作方式的前沿科技领域。但我们并非空想家，<span class="highlight">务实</span>是我们连接理想与现实的桥梁。我们关注创新，更关注创新的可持续性；我们拥抱未来，更注重未来的可实现性。每一个投资决策，都基于严谨的价值评估和风险考量，确保我们为客户寻找的"有物"，是看得见、摸得着、能够稳健成长的真实价值。</p>
+                
+                <p>我们深知，在这场探索未来的征途中，<span class="highlight">坚韧</span>是不可或缺的品质。科技创新的道路从不平坦，市场总有起伏波澜。因此，我们秉持长期主义，做时间的朋友。我们有战略定力去抵御短期的诱惑和干扰，有耐心去陪伴我们所发现的"有物"穿越周期，静待价值的花开。我们相信，从"虚空"中生长出的确定性，往往需要时间的浇灌与守护。</p>
+                
+                <div class="story-quote">
+                    在上海虚空有物，我们不承诺捷径，但我们承诺与您一同：洞见虚空，执掌有物，笃行致远。
+                </div>
+                
+                <p>上海虚空有物科技有限公司——于未知处，为您探寻并守护决定未来的价值之锚。</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 品牌应用示例 -->
+    <section id="applications" class="applications-section">
+        <div class="cosmic-container">
+            <h2 class="section-title">品牌应用示例</h2>
+            <div class="applications-grid">
+                <div class="application-card">
+                    <div class="application-image">
+                        <i class="ri-bank-card-line"></i>
+                    </div>
+                    <div class="application-content">
+                        <h3>名片设计</h3>
+                        <p>采用高克重特种纸，深色背景配合烫印工艺，体现"虚空"与"有物"的视觉对比，营造低调奢华的专业形象。</p>
+                    </div>
+                </div>
+                <div class="application-card">
+                    <div class="application-image">
+                        <i class="ri-global-line"></i>
+                    </div>
+                    <div class="application-content">
+                        <h3>官方网站</h3>
+                        <p>深邃的视觉设计与清晰的信息架构相结合，通过微妙的动效增强用户体验，展现品牌的专业性与前瞻性。</p>
+                    </div>
+                </div>
+                <div class="application-card">
+                    <div class="application-image">
+                        <i class="ri-slideshow-3-line"></i>
+                    </div>
+                    <div class="application-content">
+                        <h3>演示文稿</h3>
+                        <p>设计专业的PPT模板，包含多种版式，严格使用品牌色板与字体，确保数据可视化的清晰度和专业美感。</p>
+                    </div>
+                </div>
+                <div class="application-card">
+                    <div class="application-image">
+                        <i class="ri-file-text-line"></i>
+                    </div>
+                    <div class="application-content">
+                        <h3>信纸与文具</h3>
+                        <p>简洁、专业的办公文具设计，统一的视觉元素和风格，体现品牌的一致性和专业度。</p>
+                    </div>
+                </div>
+                <div class="application-card">
+                    <div class="application-image">
+                        <i class="ri-mail-line"></i>
+                    </div>
+                    <div class="application-content">
+                        <h3>电子邮件签名</h3>
+                        <p>保持简洁、信息清晰的邮件签名设计，包含必要联系信息，遵循品牌色彩规范，提升专业形象。</p>
+                    </div>
+                </div>
+                <div class="application-card">
+                    <div class="application-image">
+                        <i class="ri-book-open-line"></i>
+                    </div>
+                    <div class="application-content">
+                        <h3>宣传册</h3>
+                        <p>高质量印刷的公司介绍手册，图文并茂，深入阐述公司哲学、优势、团队和投资策略，展现品牌深度。</p>
+                    </div>
+                </div>
+                <div class="application-card">
+                    <div class="application-image">
+                        <i class="ri-file-chart-line"></i>
+                    </div>
+                    <div class="application-content">
+                        <h3>研究报告</h3>
+                        <p>专业、严谨的研究报告设计，注重长文阅读舒适性，规范的图表设计，体现深度研究的专业性。</p>
+                    </div>
+                </div>
+                <div class="application-card">
+                    <div class="application-image">
+                        <i class="ri-linkedin-box-line"></i>
+                    </div>
+                    <div class="application-content">
+                        <h3>社交媒体形象</h3>
+                        <p>统一的社交媒体视觉设计，包括头像、背景图和内容模板，确保跨平台的品牌一致性和专业形象。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="cosmic-container">
+            <div class="footer-logo">上海虚空有物科技有限公司</div>
+            <p class="footer-text">于未知处，见未来值。我们是您在科技未来征途上的长期价值领航者。</p>
+            <div class="footer-links">
+                <a href="#" class="footer-link">关于我们</a>
+                <a href="#" class="footer-link">投资哲学</a>
+                <a href="#" class="footer-link">团队</a>
+                <a href="#" class="footer-link">研究洞察</a>
+                <a href="#" class="footer-link">联系我们</a>
+            </div>
+            <p class="copyright">© 2025 上海虚空有物科技有限公司 版权所有</p>
+        </div>
+    </footer>
+</body>
+</html>
